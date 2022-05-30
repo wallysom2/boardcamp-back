@@ -61,6 +61,16 @@ export async function getAllCustomers(req, res) {
   }
 }
 
+export async function getOneCustomer(req, res) {
+  try {
+    const result = await db.query(`SELECT * FROM customers WHERE id = $1`, [req.params.id]);
+    res.send(result.rows[0]);
+  } catch (e) {
+    console.log(e);
+    res.status(404).send("Ocorreu um erro ao obter o cliente!");
+  }
+}
+
 export async function addCustomer(req, res) {
   const newGame = req.body;
   try {
