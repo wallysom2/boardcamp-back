@@ -85,3 +85,20 @@ export async function addCustomer(req, res) {
     res.status(500).send("Ocorreu um erro ao criar novo cliente!");
   }
 }
+
+//Atualizar um cliente
+export async function putUpdateCustomer(req, res) {
+  const newCustomer = req.body;
+  try {
+    const result = await db.query(`
+        UPDATE customers
+        SET name = $1, phone = $2, cpf = $3, birthday = $4
+        WHERE id = $5
+      `, [req.body.name, req.body.phone, req.body.cpf, req.body.birthday, req.params.id]);
+
+    res.sendStatus(200);
+  } catch (e) {
+    console.log(e);
+    res.status(500).send("Ocorreu um erro ao atualizar o cliente!");
+  }
+}

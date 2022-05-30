@@ -7,6 +7,7 @@ import { addGame } from "./../controllers/boardsController.js";
 import {getAllCustomers} from "./../controllers/boardsController.js";
 import {getOneCustomer} from "./../controllers/boardsController.js";
 import {addCustomer} from "./../controllers/boardsController.js";
+import {putUpdateCustomer} from "./../controllers/boardsController.js";
 
 
 
@@ -24,6 +25,7 @@ boardRouter.post("/games", postGameMid, addGame);
 boardRouter.get("/customers" , getAllCustomers);   
 boardRouter.get("/customers/:id", getOneCustomer);
 boardRouter.post("/customers", postCustomerMid, addCustomer);
+boardRouter.put("/customers/:id", putUpdateCustomer);
 
 
 export default boardRouter;
