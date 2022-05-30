@@ -1,0 +1,3 @@
+*.jsoni
+node_modules/
+*.env
