@@ -13,5 +13,5 @@ dotenv.config();
 // routes
 app.use(boardRouter);
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 4000;
 app.listen(port, () => console.log(chalk.bold.green(`Servidor em pé na porta ${port}`)));
