@@ -24,3 +24,29 @@ export async function addCategory(req, res) {
       res.status(500).send("Ocorreu um erro ao criar categoria!");
     }
   }
+
+  
+  export async function getAllGames(req, res) {
+    try {
+      const result = await db.query("SELECT * FROM games");
+      res.send(result.rows);
+    } catch (e) {
+      console.log(e);
+      res.status(500).send("Ocorreu um erro ao obter os games!");
+    }
+  }
+
+  export async function addGame(req, res) {
+    const newGame = req.body;
+    try {
+      const result = await db.query(`
+        INSERT INTO games ("name", "image", "stockTotal", "categoryId", "pricePerDay")
+        VALUES ($1 , $2, $3, $4, $5);
+      `, [req.body.name, req.body.image, req.body.stockTotal, req.body.categoryId, req.body.pricePerDay]);
+      
+      res.sendStatus(201);
+    } catch (e) {
+      console.log(e);
+      res.status(500).send("Ocorreu um erro ao criar jogo!");
+    }
+  }
